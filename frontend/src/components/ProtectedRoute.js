@@ -5,6 +5,9 @@ import { useAuth } from '../context/AuthContext';
 const ProtectedRoute = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
 
+  console.log("ProtectedRoute user:", user);
+  console.log("ProtectedRoute loading:", loading);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
@@ -16,8 +19,17 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
     );
   }
 
-  if (!user) return <Navigate to="/login" replace />;
-  if (adminOnly && user.role !== 'admin') return <Navigate to="/dashboard" replace />;
+  // 👇 مهم جدًا: لو مفيش user
+  if (!user) {
+    console.log("No user found → redirect to login");
+    return <Navigate to="/login" replace />;
+  }
+
+  // 👇 check admin
+  if (adminOnly && user.role !== 'admin') {
+    console.log("Not admin → redirect dashboard");
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return children;
 };
