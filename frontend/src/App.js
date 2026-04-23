@@ -14,6 +14,7 @@ import './index.css';
 
 function App() {
   return (
+    console.log("App loaded");
     <ThemeProvider>
       <AuthProvider>
         <Router>
