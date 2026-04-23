@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "@tailwindcss/forms": "^0.5.7",
     "axios": "^1.6.2",
     "date-fns": "^3.0.6",
